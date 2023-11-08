@@ -13,7 +13,7 @@ use Laminas\Filter\FilterChain;
 use Laminas\Filter\StringToLower;
 use Laminas\Filter\Word\CamelCaseToDash;
 use Laminas\Filter\Word\DashToCamelCase;
-use SprykerSdk\Utils\Infrastructure\Filter\CamelCaseToDash as CamelCaseToDashWithoutAbbreviation;
+use SprykerSdk\Utils\Infrastructure\Helper\Filter\CamelCaseToDash as CamelCaseToDashWithoutAbbreviation;
 
 class TextCaseHelper
 {
@@ -73,5 +73,22 @@ class TextCaseHelper
             static::camelCaseToDash($organization),
             static::camelCaseToDash($package),
         ]);
+    }
+
+    /**
+     * @param string $string
+     * @param bool $capitalizeFirstCharacter
+     *
+     * @return string
+     */
+    public static function fromDashToCamelCase(string $string, bool $capitalizeFirstCharacter = true): string
+    {
+        $str = str_replace('-', '', ucwords($string, '-'));
+
+        if (!$capitalizeFirstCharacter) {
+            $str = lcfirst($str);
+        }
+
+        return $str;
     }
 }

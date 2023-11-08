@@ -84,4 +84,18 @@ class TextCaseHelperTest extends TestCase
     {
         $this->assertSame($expResult, TextCaseHelper::dashToCamelCase($value, $upperCaseFirst));
     }
+
+    /**
+     * @return void
+     */
+    public function testFromDashToCamelCaseShouldReturnValidResult(): void
+    {
+        // Act
+        $resultOne = TextCaseHelper::fromDashToCamelCase('some-dash-value');
+        $resultTwo = TextCaseHelper::fromDashToCamelCase('some-dash-value', false);
+
+        // Assert
+        $this->assertSame('SomeDashValue', $resultOne);
+        $this->assertSame('someDashValue', $resultTwo);
+    }
 }

@@ -17,7 +17,6 @@
     "ext-zip": "*",
     "phpstan/phpstan": "^1.0.0",
     "phpunit/phpunit": "^9.5.0",
-    "spryker-sdk/manifest-test-data-provider": "dev-master",
     "spryker/code-sniffer": "0.17.18"
   },
   "autoload": {

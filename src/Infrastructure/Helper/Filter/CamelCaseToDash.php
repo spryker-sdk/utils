@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace SprykerSdk\Utils\Infrastructure\Filter;
+namespace SprykerSdk\Utils\Infrastructure\Helper\Filter;
 
 use Laminas\Filter\Word\AbstractSeparator;
 
