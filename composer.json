@@ -7,7 +7,7 @@
     "php": ">=7.4",
     "ext-mbstring": "*",
     "composer/semver": "^3.3",
-    "laminas/laminas-filter": "^2.33",
+    "laminas/laminas-filter": "^2.11.0",
     "symfony/filesystem": "^5.3",
     "symfony/finder": "^5.3",
     "symfony/monolog-bundle": "^3.8",
