@@ -1,0 +1,24 @@
+# IDE
+.idea/
+.project/
+nbproject/
+.buildpath/
+.settings/
+*.sublime-*
+
+# OS
+.DS_Store
+*.AppleDouble
+*.AppleDB
+*.AppleDesktop
+
+# tooling
+vendor/
+!integrator/project_original/vendor/
+!general/project_original/vendor/
+!generator/project_original/vendor/
+composer.lock
+!integrator/project_original/composer.lock
+!general/project_original/composer.lock
+!generator/project_original/composer.lock
+.phpunit.result.cache
