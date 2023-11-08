@@ -171,7 +171,7 @@ jobs:
             - name: Run tests
               run: |
                   if [[ ${{ matrix.php-version }} == '7.4' ]]; then
-                   XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover coverage.xml
+                   XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover coverage.xml tests
                   else
                    composer test
                   fi
