@@ -19,10 +19,10 @@ jobs:
                 ]
         steps:
             - name: Checkout
-              uses: actions/checkout@v2
+              uses: actions/checkout@v4
 
             - name: Setup PHP
-              uses: shivammathur/setup-php@v2
+              uses: shivammathur/setup-php@2.27.0
               with:
                   php-version: ${{ matrix.php-version }}
                   extensions: mbstring, intl, pdo_mysql
@@ -36,7 +36,7 @@ jobs:
                   echo "::set-output name=dir::$(composer config cache-files-dir)"
 
             - name: Composer cache
-              uses: actions/cache@v2
+              uses: actions/cache@v3
               with:
                   path: ${{ steps.composer-cache.outputs.dir }}
                   key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -62,10 +62,10 @@ jobs:
                 ]
         steps:
             -   name: Checkout
-                uses: actions/checkout@v2
+                uses: actions/checkout@v4
 
             -   name: Setup PHP
-                uses: shivammathur/setup-php@v2
+                uses: shivammathur/setup-php@2.27.0
                 with:
                     php-version: ${{ matrix.php-version }}
                     extensions: mbstring, intl, pdo_mysql
@@ -76,7 +76,7 @@ jobs:
                     echo "::set-output name=dir::$(composer config cache-files-dir)"
 
             -   name: Composer cache
-                uses: actions/cache@v2
+                uses: actions/cache@v3
                 with:
                     path: ${{ steps.composer-cache.outputs.dir }}
                     key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -99,10 +99,10 @@ jobs:
 
         steps:
             - name: Checkout
-              uses: actions/checkout@v2
+              uses: actions/checkout@v4
 
             - name: Setup PHP
-              uses: shivammathur/setup-php@v2
+              uses: shivammathur/setup-php@2.27.0
               with:
                   php-version: ${{ matrix.php-version }}
                   extensions: mbstring, intl, pdo_mysql
@@ -113,7 +113,7 @@ jobs:
                   echo "::set-output name=dir::$(composer config cache-files-dir)"
 
             - name: Composer cache
-              uses: actions/cache@v2
+              uses: actions/cache@v3
               with:
                   path: ${{ steps.composer-cache.outputs.dir }}
                   key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -138,20 +138,18 @@ jobs:
             matrix:
                 php-version: [
                         '7.4',
+                        '8.1',
                         '8.2',
                 ]
         steps:
             - name: Checkout
-              uses: actions/checkout@v2
+              uses: actions/checkout@v4
 
             - name: Setup PHP
-              uses: shivammathur/setup-php@v2
+              uses: shivammathur/setup-php@2.27.0
               with:
                 php-version: ${{ matrix.php-version }}
                 extensions: mbstring, intl, pdo_mysql
-
-            - name: Validate composer.json and composer.lock
-              run: composer validate
 
             - name: Get Composer Cache Directory
               id: composer-cache
@@ -170,12 +168,12 @@ jobs:
 
             - name: Run tests
               run: |
-                  if [[ ${{ matrix.php-version }} == '7.4' ]]; then
+                  if [[ ${{ matrix.php-version }} == '8.1' ]]; then
                    XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover coverage.xml tests
                   else
                    composer test
                   fi
 
             - name: Code Coverage Report
-              if: success() && matrix.php-version == '7.4'
+              if: success() && matrix.php-version == '8.1'
               uses: codecov/codecov-action@v1
