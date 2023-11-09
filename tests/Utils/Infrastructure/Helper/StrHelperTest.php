@@ -9,18 +9,17 @@ declare(strict_types=1);
 
 namespace UtilsTest\Infrastructure\Helper;
 
-use Generator;
 use PHPUnit\Framework\TestCase;
 use SprykerSdk\Utils\Infrastructure\Helper\StrHelper;
 
 class StrHelperTest extends TestCase
 {
     /**
-     * @return \Generator
+     * @return array
      */
-    public function camelCaseToDashDataProvider(): Generator
+    public function camelCaseToDashDataProvider(): array
     {
-        $data = [
+        return [
             ['test-foo-bar', 'testFooBar', true],
             ['test-foo-bar', 'testFooBar', false],
             ['test-foo-bar', 'TestFooBar', true],
@@ -30,10 +29,6 @@ class StrHelperTest extends TestCase
             ['test-foo-bar-abc-test', 'testFooBarABCTest', true],
             ['test-foo-bar-abctest', 'testFooBarABCTest', false],
         ];
-
-        foreach ($data as $set) {
-            yield $set;
-        }
     }
 
     /**
@@ -51,11 +46,11 @@ class StrHelperTest extends TestCase
     }
 
     /**
-     * @return \Generator
+     * @return array
      */
-    public function dashToCamelCaseDataProvider(): Generator
+    public function dashToCamelCaseDataProvider(): array
     {
-        $data = [
+        return [
             ['TestFooBar', 'test-foo-bar', true],
             ['testFooBar', 'test-foo-bar', false],
             ['TestFooBar', 'Test-foo-bar', false],
@@ -65,10 +60,6 @@ class StrHelperTest extends TestCase
             ['TestFooBarAbc123Test', 'test-foo-bar-abc-123-test', true],
             ['TestFooBarAbc123test', 'test-foo-bar-abc-123test', true],
         ];
-
-        foreach ($data as $set) {
-            yield $set;
-        }
     }
 
     /**

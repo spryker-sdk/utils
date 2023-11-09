@@ -25,9 +25,6 @@ class SemanticVersionHelper
         }
 
         $versionParts = explode('.', $semanticVersion);
-        if (!$versionParts) {
-            return null;
-        }
 
         return (int)array_shift($versionParts);
     }

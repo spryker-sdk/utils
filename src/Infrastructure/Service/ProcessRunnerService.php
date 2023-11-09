@@ -28,8 +28,8 @@ class ProcessRunnerService implements ProcessRunnerServiceInterface
     }
 
     /**
-     * @param array $command
-     * @param array $env
+     * @param array<string> $command
+     * @param array<mixed> $env
      * @param string|null $cwd
      * @param mixed $input
      * @param float|null $timeout
