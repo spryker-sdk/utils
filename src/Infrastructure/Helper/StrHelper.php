@@ -15,7 +15,7 @@ use Laminas\Filter\Word\CamelCaseToDash;
 use Laminas\Filter\Word\DashToCamelCase;
 use SprykerSdk\Utils\Infrastructure\Helper\Filter\CamelCaseToDash as CamelCaseToDashWithoutAbbreviation;
 
-class TextCaseHelper
+class StrHelper
 {
     /**
      * @param string $value
@@ -27,12 +27,11 @@ class TextCaseHelper
     {
         $filterChain = new FilterChain();
 
-        if ($separateAbbreviation) {
-            $filterChain->attach(new CamelCaseToDash());
-        } else {
-            $filterChain->attach(new CamelCaseToDashWithoutAbbreviation());
-        }
+        $camelCaseToDashFilter = $separateAbbreviation
+            ? new CamelCaseToDash()
+            : new CamelCaseToDashWithoutAbbreviation();
 
+        $filterChain->attach($camelCaseToDashFilter);
         $filterChain->attach(new StringToLower());
 
         return $filterChain->filter($value);
@@ -48,14 +47,14 @@ class TextCaseHelper
     {
         $filterChain = new FilterChain();
         $filterChain->attach(new DashToCamelCase());
+        $filterResult = $filterChain->filter($value);
 
         if ($upperCaseFirst) {
-            return ucfirst($filterChain->filter($value));
+            return ucfirst($filterResult);
         }
 
         // Set first character in original case
-
-        return mb_substr($value, 0, 1) . mb_substr($filterChain->filter($value), 1);
+        return mb_substr($value, 0, 1) . mb_substr($filterResult, 1);
     }
 
     /**
@@ -73,22 +72,5 @@ class TextCaseHelper
             static::camelCaseToDash($organization),
             static::camelCaseToDash($package),
         ]);
-    }
-
-    /**
-     * @param string $string
-     * @param bool $capitalizeFirstCharacter
-     *
-     * @return string
-     */
-    public static function fromDashToCamelCase(string $string, bool $capitalizeFirstCharacter = true): string
-    {
-        $str = str_replace('-', '', ucwords($string, '-'));
-
-        if (!$capitalizeFirstCharacter) {
-            $str = lcfirst($str);
-        }
-
-        return $str;
     }
 }

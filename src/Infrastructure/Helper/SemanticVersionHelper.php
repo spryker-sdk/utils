@@ -39,6 +39,6 @@ class SemanticVersionHelper
      */
     protected static function isSemanticVersion(string $version): bool
     {
-        return Comparator::greaterThanOrEqualTo($version, '0.0.1') === true;
+        return Comparator::greaterThanOrEqualTo($version, '0.0.1');
     }
 }

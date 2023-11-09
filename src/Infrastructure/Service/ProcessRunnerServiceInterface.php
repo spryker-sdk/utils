@@ -20,11 +20,20 @@ interface ProcessRunnerServiceInterface
 
     /**
      * @param array<string> $command
-     * @param array<string, mixed> $env
+     * @param array<mixed> $env
+     * @param string|null $cwd
+     * @param mixed $input
+     * @param float|null $timeout
      *
-     * @return \Symfony\Component\Process\Process<string, string>
+     * @return \Symfony\Component\Process\Process
      */
-    public function run(array $command, array $env = []): Process;
+    public function run(
+        array $command,
+        array $env = [],
+        ?string $cwd = null,
+        $input = null,
+        ?float $timeout = self::DEFAULT_PROCESS_TIMEOUT
+    ): Process;
 
     /**
      * @param string $command

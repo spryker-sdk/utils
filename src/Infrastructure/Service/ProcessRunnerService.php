@@ -28,16 +28,23 @@ class ProcessRunnerService implements ProcessRunnerServiceInterface
     }
 
     /**
-     * @param array<string> $command
-     * @param array<string, mixed> $env
+     * @param array $command
+     * @param array $env
+     * @param string|null $cwd
+     * @param mixed $input
+     * @param float|null $timeout
      *
-     * @return \Symfony\Component\Process\Process<string, string>
+     * @return \Symfony\Component\Process\Process
      */
-    public function run(array $command, array $env = []): Process
-    {
+    public function run(
+        array $command,
+        array $env = [],
+        ?string $cwd = null,
+        $input = null,
+        ?float $timeout = self::DEFAULT_PROCESS_TIMEOUT
+    ): Process {
         $this->logger->debug(sprintf('Run command: %s', implode(' ', $command)), $env);
-        $process = new Process($command, (string)getcwd(), $env);
-        $process->setTimeout(static::DEFAULT_PROCESS_TIMEOUT);
+        $process = new Process($command, (string)getcwd(), $env, null, $timeout);
         $process->run();
 
         return $process;
@@ -61,7 +68,6 @@ class ProcessRunnerService implements ProcessRunnerServiceInterface
     ): Process {
         $this->logger->debug(sprintf('Run command: %s', $command), ['cwd' => $cwd, 'env' => $env]);
         $process = Process::fromShellCommandline($command, $cwd, $env, $input, $timeout);
-        $process->setTimeout(static::DEFAULT_PROCESS_TIMEOUT);
         $process->run();
 
         return $process;

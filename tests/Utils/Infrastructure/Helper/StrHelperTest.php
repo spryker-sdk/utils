@@ -11,9 +11,9 @@ namespace UtilsTest\Infrastructure\Helper;
 
 use Generator;
 use PHPUnit\Framework\TestCase;
-use SprykerSdk\Utils\Infrastructure\Helper\TextCaseHelper;
+use SprykerSdk\Utils\Infrastructure\Helper\StrHelper;
 
-class TextCaseHelperTest extends TestCase
+class StrHelperTest extends TestCase
 {
     /**
      * @return \Generator
@@ -47,7 +47,7 @@ class TextCaseHelperTest extends TestCase
      */
     public function testCamelCaseToDash(string $expResult, string $value, bool $separateAbbreviation): void
     {
-        $this->assertSame($expResult, TextCaseHelper::camelCaseToDash($value, $separateAbbreviation));
+        $this->assertSame($expResult, StrHelper::camelCaseToDash($value, $separateAbbreviation));
     }
 
     /**
@@ -82,20 +82,6 @@ class TextCaseHelperTest extends TestCase
      */
     public function testDashToCamelCase(string $expResult, string $value, bool $upperCaseFirst): void
     {
-        $this->assertSame($expResult, TextCaseHelper::dashToCamelCase($value, $upperCaseFirst));
-    }
-
-    /**
-     * @return void
-     */
-    public function testFromDashToCamelCaseShouldReturnValidResult(): void
-    {
-        // Act
-        $resultOne = TextCaseHelper::fromDashToCamelCase('some-dash-value');
-        $resultTwo = TextCaseHelper::fromDashToCamelCase('some-dash-value', false);
-
-        // Assert
-        $this->assertSame('SomeDashValue', $resultOne);
-        $this->assertSame('someDashValue', $resultTwo);
+        $this->assertSame($expResult, StrHelper::dashToCamelCase($value, $upperCaseFirst));
     }
 }
