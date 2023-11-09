@@ -9,4 +9,3 @@ You can install it using Composer as follows:
 ```
 composer require spryker-sdk/utils
 ```
-
