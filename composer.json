@@ -26,7 +26,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "UtilsTest\\": "tests/Utils/"
+      "SprykerSdk\\UtilsTest\\": "tests/Utils/"
     }
   },
   "config": {

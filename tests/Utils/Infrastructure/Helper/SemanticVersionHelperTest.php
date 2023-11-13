@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace UtilsTest\Infrastructure\Helper;
+namespace SprykerSdk\UtilsTest\Infrastructure\Helper;
 
 use PHPUnit\Framework\TestCase;
 use SprykerSdk\Utils\Infrastructure\Helper\SemanticVersionHelper;
