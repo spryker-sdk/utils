@@ -15,14 +15,14 @@ use Symfony\Component\Process\Process;
 class ProcessRunnerService implements ProcessRunnerServiceInterface
 {
     /**
-     * @var \Psr\Log\LoggerInterface
+     * @var \Psr\Log\LoggerInterface|null
      */
-    protected LoggerInterface $logger;
+    protected ?LoggerInterface $logger;
 
     /**
-     * @param \Psr\Log\LoggerInterface $logger
+     * @param \Psr\Log\LoggerInterface|null $logger
      */
-    public function __construct(LoggerInterface $logger)
+    public function __construct(?LoggerInterface $logger = null)
     {
         $this->logger = $logger;
     }
@@ -43,7 +43,7 @@ class ProcessRunnerService implements ProcessRunnerServiceInterface
         $input = null,
         ?float $timeout = self::DEFAULT_PROCESS_TIMEOUT
     ): Process {
-        $this->logger->debug(sprintf('Run command: %s', implode(' ', $command)), $env);
+        $this->debug(sprintf('Run command: %s', implode(' ', $command)), $env);
         $process = new Process($command, (string)getcwd(), $env, null, $timeout);
         $process->run();
 
@@ -66,7 +66,7 @@ class ProcessRunnerService implements ProcessRunnerServiceInterface
         $input = null,
         ?float $timeout = self::DEFAULT_PROCESS_TIMEOUT
     ): Process {
-        $this->logger->debug(sprintf('Run command: %s', $command), ['cwd' => $cwd, 'env' => $env]);
+        $this->debug(sprintf('Run command: %s', $command), ['cwd' => $cwd, 'env' => $env]);
         $process = Process::fromShellCommandline($command, $cwd, $env, $input, $timeout);
         $process->run();
 
@@ -89,7 +89,7 @@ class ProcessRunnerService implements ProcessRunnerServiceInterface
         $input = null,
         ?float $timeout = self::DEFAULT_PROCESS_TIMEOUT
     ): Process {
-        $this->logger->debug(sprintf('Run command: %s', $command), ['cwd' => $cwd, 'env' => $env]);
+        $this->debug(sprintf('Run command: %s', $command), ['cwd' => $cwd, 'env' => $env]);
         $process = Process::fromShellCommandline($command, $cwd, $env, $input, $timeout);
         $process->mustRun();
 
@@ -112,10 +112,23 @@ class ProcessRunnerService implements ProcessRunnerServiceInterface
         $input = null,
         ?float $timeout = self::DEFAULT_PROCESS_TIMEOUT
     ): Process {
-        $this->logger->debug(sprintf('Run command: %s', implode(' ', $command)), ['cwd' => $cwd, 'env' => $env]);
+        $this->debug(sprintf('Run command: %s', implode(' ', $command)), ['cwd' => $cwd, 'env' => $env]);
         $process = new Process($command, $cwd, $env, $input, $timeout);
         $process->mustRun();
 
         return $process;
+    }
+
+    /**
+     * @param string $message
+     * @param array<mixed> $context
+     *
+     * @return void
+     */
+    protected function debug(string $message, array $context = []): void
+    {
+        if ($this->logger) {
+            $this->logger->debug($message, $context);
+        }
     }
 }

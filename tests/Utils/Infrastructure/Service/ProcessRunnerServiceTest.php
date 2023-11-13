@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace UtilsTest\Infrastructure\Service;
+namespace SprykerSdk\UtilsTest\Infrastructure\Service;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
@@ -65,6 +65,19 @@ class ProcessRunnerServiceTest extends TestCase
         $service = $this->createProcessRunnerService();
 
         $process = $service->runFromCommandLine('ls');
+
+        $this->assertInstanceOf(Process::class, $process);
+        $this->assertSame(0, $process->getExitCode());
+    }
+
+    /**
+     * @return void
+     */
+    public function testRunShellCommandWithoutLogger(): void
+    {
+        $service = new ProcessRunnerService();
+
+        $process = $service->run(['ls']);
 
         $this->assertInstanceOf(Process::class, $process);
         $this->assertSame(0, $process->getExitCode());

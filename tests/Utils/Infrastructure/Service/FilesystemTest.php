@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace UtilsTest\Infrastructure\Service;
+namespace SprykerSdk\UtilsTest\Infrastructure\Service;
 
 use PHPUnit\Framework\TestCase;
 use SprykerSdk\Utils\Infrastructure\Service\Filesystem;
