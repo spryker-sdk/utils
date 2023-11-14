@@ -8,10 +8,10 @@
     "ext-mbstring": "*",
     "composer/semver": "^3.3",
     "laminas/laminas-filter": "^2.11.0",
-    "symfony/filesystem": "^5.3",
-    "symfony/finder": "^5.3",
-    "symfony/process": "^5.0",
-    "psr/log": "^1.0"
+    "symfony/filesystem": "^5.3.0 || ^6.0.0",
+    "symfony/finder": "^5.3.0 || ^6.0.0",
+    "symfony/process": "^5.0.0 || ^6.0.0",
+    "psr/log": "^1.0 || ^2.0 || ^3.0"
   },
   "require-dev": {
     "ext-zip": "*",

@@ -82,24 +82,13 @@ class Filesystem extends SymfonyFilesystem
 
         static::$lastError = null;
 
-        set_error_handler([static::class, 'handleError']);
+        /** @var callable $errorHandler */
+        $errorHandler = static::class . '::handleError';
+        set_error_handler($errorHandler);
         try {
             return $func(...$args);
         } finally {
             restore_error_handler();
         }
-    }
-
-    /**
-     * @param int $type
-     * @param string $msg
-     *
-     * @return bool
-     */
-    public static function handleError(int $type, string $msg): bool
-    {
-        static::$lastError = $msg;
-
-        return true;
     }
 }
