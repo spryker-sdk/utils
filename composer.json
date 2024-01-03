@@ -4,7 +4,7 @@
   "type": "library",
   "license": "proprietary",
   "require": {
-    "php": ">=7.4",
+    "php": ">=8.0",
     "ext-mbstring": "*",
     "composer/semver": "^3.4",
     "laminas/laminas-filter": "^2.22.0",
