@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bfa156f82ee0fc11bc4481f1bd5009f8",
+    "content-hash": "0ac24ce65e61927ec314b4a6e3585a23",
     "packages": [
         {
             "name": "composer/semver",
@@ -2700,20 +2700,20 @@
         },
         {
             "name": "spryker/code-sniffer",
-            "version": "0.17.18",
+            "version": "0.17.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spryker/code-sniffer.git",
-                "reference": "5fb8b573abc4a906d0d364a4a03abd38e565ba29"
+                "reference": "2156a1d4d257e20dacc955872c8f6b9c7b8be3fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spryker/code-sniffer/zipball/5fb8b573abc4a906d0d364a4a03abd38e565ba29",
-                "reference": "5fb8b573abc4a906d0d364a4a03abd38e565ba29",
+                "url": "https://api.github.com/repos/spryker/code-sniffer/zipball/2156a1d4d257e20dacc955872c8f6b9c7b8be3fd",
+                "reference": "2156a1d4d257e20dacc955872c8f6b9c7b8be3fd",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.4",
+                "php": ">=8.0",
                 "slevomat/coding-standard": "^7.2.0 || ^8.0.1",
                 "squizlabs/php_codesniffer": "^3.6.2"
             },
@@ -2754,7 +2754,7 @@
                 "issues": "https://github.com/spryker/code-sniffer/issues",
                 "source": "https://github.com/spryker/code-sniffer"
             },
-            "time": "2023-01-03T16:08:22+00:00"
+            "time": "2023-11-02T19:16:04+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
