@@ -9,12 +9,6 @@ declare(strict_types=1);
 
 namespace SprykerSdk\Utils\Infrastructure\Helper;
 
-use Laminas\Filter\FilterChain;
-use Laminas\Filter\StringToLower;
-use Laminas\Filter\Word\CamelCaseToDash;
-use Laminas\Filter\Word\DashToCamelCase;
-use SprykerSdk\Utils\Infrastructure\Helper\Filter\CamelCaseToDash as CamelCaseToDashWithoutAbbreviation;
-
 class StrHelper
 {
     /**
@@ -25,16 +19,20 @@ class StrHelper
      */
     public static function camelCaseToDash(string $value, bool $separateAbbreviation = true): string
     {
-        $filterChain = new FilterChain();
+        if (ctype_lower($value)) {
+            return $value;
+        }
 
-        $camelCaseToDashFilter = $separateAbbreviation
-            ? new CamelCaseToDash()
-            : new CamelCaseToDashWithoutAbbreviation();
+        $pattern = '/([a-z])([A-Z])/';
+        $replacement = '$1' . addcslashes('-', '$') . '$2';
+        if ($separateAbbreviation) {
+            $pattern = ['#(?<=(?:[A-Z]))([A-Z]+)([A-Z][a-z])#', '#(?<=(?:[a-z0-9]))([A-Z])#'];
+            $replacement = ['\1-\2', '-\1'];
+        }
 
-        $filterChain->attach($camelCaseToDashFilter);
-        $filterChain->attach(new StringToLower());
+        $value = (string)preg_replace($pattern, $replacement, $value);
 
-        return $filterChain->filter($value);
+        return mb_strtolower($value, 'UTF-8');
     }
 
     /**
@@ -45,16 +43,14 @@ class StrHelper
      */
     public static function dashToCamelCase(string $value, bool $upperCaseFirst = true): string
     {
-        $filterChain = new FilterChain();
-        $filterChain->attach(new DashToCamelCase());
-        $filterResult = $filterChain->filter($value);
+        $isFirstCharUpper = $value === ucfirst($value);
 
+        $value = str_replace(' ', '', ucwords(str_replace('-', ' ', $value)));
         if ($upperCaseFirst) {
-            return ucfirst($filterResult);
+            return ucfirst($value);
         }
 
-        // Set first character in original case
-        return mb_substr($value, 0, 1) . mb_substr($filterResult, 1);
+        return $isFirstCharUpper ? ucfirst($value) : lcfirst($value);
     }
 
     /**

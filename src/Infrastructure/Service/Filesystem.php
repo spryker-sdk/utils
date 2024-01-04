@@ -31,7 +31,7 @@ class Filesystem extends SymfonyFilesystem
     public function readFile(
         string $filename,
         bool $useIncludePath = false,
-        $context = null
+        mixed $context = null
     ): string {
         $data = $context === null
             ? static::box('file_get_contents', $filename, $useIncludePath)
@@ -53,7 +53,7 @@ class Filesystem extends SymfonyFilesystem
      *
      * @return array<string>
      */
-    public function scanDir(string $directory, int $sorting_order = SCANDIR_SORT_ASCENDING, $context = null): array
+    public function scanDir(string $directory, int $sorting_order = SCANDIR_SORT_ASCENDING, mixed $context = null): array
     {
         $data = $context === null
             ? static::box('scandir', $directory, $sorting_order)
@@ -74,7 +74,7 @@ class Filesystem extends SymfonyFilesystem
      *
      * @return mixed
      */
-    protected static function box(string $func, ...$args)
+    protected static function box(string $func, ...$args): mixed
     {
         if (!function_exists($func)) {
             throw new IOException(sprintf('Unable to perform filesystem operation because the "%s()" function has been disabled.', $func));
