@@ -14,9 +14,9 @@ use Symfony\Component\Process\Process;
 interface ProcessRunnerServiceInterface
 {
     /**
-     * @var int
+     * @var float
      */
-    public const DEFAULT_PROCESS_TIMEOUT = 900;
+    public const DEFAULT_PROCESS_TIMEOUT = 900.0;
 
     /**
      * @param array<string> $command
