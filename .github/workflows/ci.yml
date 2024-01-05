@@ -92,14 +92,14 @@ jobs:
 
             - name: Run tests
               run: |
-                  if [[ ${{ matrix.php-version }} == '8.1' ]]; then
+                  if [[ ${{ matrix.php-version }} == '8.0' ]]; then
                    XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-clover coverage.xml tests
                   else
                    composer test
                   fi
 
             - name: Upload coverage reports to Codecov
-              if: success() && matrix.php-version == '8.1'
+              if: success() && matrix.php-version == '8.0'
               uses: codecov/codecov-action@v3
               env:
                   CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
