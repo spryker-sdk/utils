@@ -35,7 +35,7 @@ class ProcessRunnerServiceTest extends TestCase
     /**
      * @return array<int, array>
      */
-    public function commandDataProvider(): array
+    public static function commandDataProvider(): array
     {
         return [
             [['ls']],

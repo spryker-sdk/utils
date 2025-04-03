@@ -30,7 +30,7 @@ class SemanticVersionHelperTest extends TestCase
     /**
      * @return array
      */
-    public function getMajorVersionProvider(): array
+    public static function getMajorVersionProvider(): array
     {
         $validSemanticVersions = [
             ['1.0.0', 1],
