@@ -17,7 +17,7 @@ class StrHelperTest extends TestCase
     /**
      * @return array
      */
-    public function camelCaseToDashDataProvider(): array
+    public static function camelCaseToDashDataProvider(): array
     {
         return [
             ['test-foo-bar', 'testFooBar', true],
@@ -48,7 +48,7 @@ class StrHelperTest extends TestCase
     /**
      * @return array
      */
-    public function dashToCamelCaseDataProvider(): array
+    public static function dashToCamelCaseDataProvider(): array
     {
         return [
             ['TestFooBar', 'test-foo-bar', true],
