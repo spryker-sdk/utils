@@ -82,7 +82,7 @@ class Filesystem extends SymfonyFilesystem
 
         static::$lastError = null;
 
-        /** @var callable $errorHandler */
+        /** @var callable-string $errorHandler */
         $errorHandler = static::class . '::handleError';
         set_error_handler($errorHandler);
         try {
