@@ -16,7 +16,7 @@ use Symfony\Component\Process\Process;
 
 class ProcessRunnerServiceTest extends TestCase
 {
-     /**
+    /**
      * @dataProvider commandDataProvider
      *
      * @param array<string> $command
