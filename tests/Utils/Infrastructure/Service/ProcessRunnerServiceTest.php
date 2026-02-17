@@ -16,13 +16,14 @@ use Symfony\Component\Process\Process;
 
 class ProcessRunnerServiceTest extends TestCase
 {
-    /**
+     /**
      * @dataProvider commandDataProvider
      *
      * @param array<string> $command
      *
      * @return void
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('commandDataProvider')]
     public function testRunReturnsProcessObject(array $command): void
     {
         $service = $this->createProcessRunnerService();
@@ -35,7 +36,7 @@ class ProcessRunnerServiceTest extends TestCase
     /**
      * @return array<int, array>
      */
-    public function commandDataProvider(): array
+    public static function commandDataProvider(): array
     {
         return [
             [['ls']],

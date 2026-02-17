@@ -17,7 +17,7 @@ class StrHelperTest extends TestCase
     /**
      * @return array
      */
-    public function camelCaseToDashDataProvider(): array
+    public static function camelCaseToDashDataProvider(): array
     {
         return [
             ['test-foo-bar', 'testFooBar', true],
@@ -40,6 +40,7 @@ class StrHelperTest extends TestCase
      *
      * @return void
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('camelCaseToDashDataProvider')]
     public function testCamelCaseToDash(string $expResult, string $value, bool $separateAbbreviation): void
     {
         $this->assertSame($expResult, StrHelper::camelCaseToDash($value, $separateAbbreviation));
@@ -48,7 +49,7 @@ class StrHelperTest extends TestCase
     /**
      * @return array
      */
-    public function dashToCamelCaseDataProvider(): array
+    public static function dashToCamelCaseDataProvider(): array
     {
         return [
             ['TestFooBar', 'test-foo-bar', true],
@@ -71,6 +72,7 @@ class StrHelperTest extends TestCase
      *
      * @return void
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('dashToCamelCaseDataProvider')]
     public function testDashToCamelCase(string $expResult, string $value, bool $upperCaseFirst): void
     {
         $this->assertSame($expResult, StrHelper::dashToCamelCase($value, $upperCaseFirst));

@@ -14,7 +14,7 @@ use SprykerSdk\Utils\Infrastructure\Helper\SemanticVersionHelper;
 
 class SemanticVersionHelperTest extends TestCase
 {
-    /**
+     /**
      * @dataProvider getMajorVersionProvider
      *
      * @param mixed $value
@@ -22,6 +22,7 @@ class SemanticVersionHelperTest extends TestCase
      *
      * @return void
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('getMajorVersionProvider')]
     public function testGetMajorVersion($value, ?int $expectedResult): void
     {
         $this->assertSame($expectedResult, SemanticVersionHelper::getMajorVersion((string)$value));
@@ -30,7 +31,7 @@ class SemanticVersionHelperTest extends TestCase
     /**
      * @return array
      */
-    public function getMajorVersionProvider(): array
+    public static function getMajorVersionProvider(): array
     {
         $validSemanticVersions = [
             ['1.0.0', 1],
