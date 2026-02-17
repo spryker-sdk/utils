@@ -1,5 +1,5 @@
 {
-      "name": "spryker-sdk/utils",
+  "name": "spryker-sdk/utils",
   "description": "Spryker SDK Utils Module",
   "type": "library",
   "license": "proprietary",
