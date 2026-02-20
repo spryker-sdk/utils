@@ -23,6 +23,7 @@ class ProcessRunnerServiceTest extends TestCase
      *
      * @return void
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('commandDataProvider')]
     public function testRunReturnsProcessObject(array $command): void
     {
         $service = $this->createProcessRunnerService();
